@@ -83,6 +83,7 @@ function showNode(nodeKey) {
 
     const choice1 = document.getElementById("choice1");
     const choice2 = document.getElementById("choice2");
+    const restartButton = document.getElementById("restart");
 
     // Verifica se há escolhas disponíveis
     if (node.choices) {
@@ -94,11 +95,11 @@ function showNode(nodeKey) {
         choice2.onclick = () => makeChoice(node.choices[1].next);
         choice2.style.display = "inline-block";
 
-        // Adiciona animação de escolha
-        document.querySelector(".container").classList.add("choiceMade");
+        restartButton.style.display = "none"; // Esconde o botão de reiniciar durante o jogo
     } else {
         choice1.style.display = "none";
         choice2.style.display = "none";
+        restartButton.style.display = "inline-block"; // Mostra o botão de reiniciar no final
         document.getElementById("story").classList.add("ending");
     }
 }
@@ -108,6 +109,11 @@ function makeChoice(nextNode) {
     if (storyNodes[nextNode]) {
         showNode(nextNode);
     }
+}
+
+// Reinicia o jogo ao clicar em "Reiniciar"
+function restartGame() {
+    startGame();
 }
 
 // Inicia o jogo ao carregar a página
